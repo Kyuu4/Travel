@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title_name %}{{ course.name }}{% endblock %}
+
+{% block content %}
+<section class="breadcrumbs-custom-inset">
+  <div class="breadcrumbs-custom context-dark bg-overlay-60">
+    <div class="container">
+      <h2 class="breadcrumbs-custom-title">{{ course.name }}</h2>
+      <ul class="breadcrumbs-custom-path">
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'login' %}">Registration</a></li>
+      </ul>
+    </div>
+    <div class="box-position" style="background-image: url({% static 'images/breadcrumbs-bg.png' %});"></div>
+  </div>
+</section>
+
+<!-- Discover New Horizons-->
+        <section class="section section-sm section-first bg-default text-md-left">
+            <form method="post">
+                {% csrf_token %}
+                {% if form.errors %}
+                {{ form.errors }}
+                {% endif %}
+
+                Nickname:
+                {{ form.username }}
+                Password:
+                {{ form.password1 }}
+                Password confirmation:
+                {{ form.password2 }}
+                <button type="submit">Registration!</button>
+            </form>
+        </section>
+            
+{% endblock content %}
